@@ -1,7 +1,7 @@
 # flarum-ext-auth-wechat
 This plugin is for Flarum using Wechat third-party login.
 
-# Settup
+# Setup
 
 # Config
 1. fill app id and secrets from wechat developer website
