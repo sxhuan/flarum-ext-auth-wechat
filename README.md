@@ -8,3 +8,5 @@ This plugin is for Flarum using Wechat third-party login.
 https://mp.weixin.qq.com
 
 2. fill wechat callback url, it will get back this url while login success
+
+# Now under developing
