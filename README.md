@@ -1,1 +1,1 @@
-# Flarum-Wechat-QQ-Third-Party-Login
+# flarum-ext-auth-wechat

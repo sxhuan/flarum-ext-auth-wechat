@@ -1,0 +1,17 @@
+import { extend } from 'flarum/extend';
+import app from 'flarum/app';
+import LogInButtons from 'flarum/components/LogInButtons';
+import LogInButton from 'flarum/components/LogInButton';
+
+app.initializers.add('flarum-auth-wechat', () => {
+  extend(LogInButtons.prototype, 'items', function(items) {
+    items.add('wechat',
+      <LogInButton
+        className="Button LogInButton--wechat"
+        icon="wechat-official"
+        path="/auth/wechat">
+        {app.translator.trans('flarum-auth-wechat.forum.log_in.with_wechat_button')}
+      </LogInButton>
+    );
+  });
+});
