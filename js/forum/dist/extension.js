@@ -42,10 +42,10 @@ System.register('stanleysong/auth/wechat/components/WechatLogInButton', ['flarum
 });;
 'use strict';
 
-System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 'flarum/components/LogInButtons', 'stanleysong/auth/wechat/components/WechatLogInButton'], function (_export, _context) {
+System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 'flarum/components/LogInButtons', 'flarum/components/LogInButton'], function (_export, _context) {
   "use strict";
 
-  var extend, app, LogInButtons, WechatLogInButton;
+  var extend, app, LogInButtons, LogInButton;
   return {
     setters: [function (_flarumExtend) {
       extend = _flarumExtend.extend;
@@ -53,15 +53,15 @@ System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 
       app = _flarumApp.default;
     }, function (_flarumComponentsLogInButtons) {
       LogInButtons = _flarumComponentsLogInButtons.default;
-    }, function (_stanleysongAuthWechatComponentsWechatLogInButton) {
-      WechatLogInButton = _stanleysongAuthWechatComponentsWechatLogInButton.default;
+    }, function (_flarumComponentsLogInButton) {
+      LogInButton = _flarumComponentsLogInButton.default;
     }],
     execute: function () {
 
       app.initializers.add('stanleysong-auth-wechat', function () {
         extend(LogInButtons.prototype, 'items', function (items) {
           items.add('wechat', m(
-            WechatLogInButton,
+            LogInButton,
             {
               className: 'Button LogInButton--wechat',
               icon: 'wechat',
