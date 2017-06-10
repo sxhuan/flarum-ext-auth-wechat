@@ -41,6 +41,9 @@ class WechatAuthController extends AbstractOAuth2Controller
 
         $callback_url = $this->settings->get('stanleysong-auth-wechat.callback_url');
         $url = $oauth->getAuthorizeURL($callback_url);
+
+        file_put_contents("/var/log/php.info", $url, FILE_APPEND);
+
         if($access_token = $oauth->getAccessToken('code', $code)){
             $refresh_token = $oauth->getRefreshToken();
             $expires_in = $oauth->getExpiresIn();
@@ -52,7 +55,7 @@ class WechatAuthController extends AbstractOAuth2Controller
         $oauth->setAccessToken($access_token);
         $userinfo = $oauth->api('sns/userinfo', array('openid'=>$openid));
 
-        file_put_contents("/var/log/php.info", $userinfo);
+        file_put_contents("/var/log/php.info", $userinfo, FILE_APPEND);
 
         return $userinfo;
     }
