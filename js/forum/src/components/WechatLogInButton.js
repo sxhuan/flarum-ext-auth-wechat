@@ -1,8 +1,7 @@
 import Button from 'flarum/components/Button';
 
 /**
- * The `SteamLogInButton` component displays steam login button which will open
- * a popup window containing steam login box.
+ * stanley song (sxhuan@gmail.com)
  */
 export default class WechatLogInButton extends Button {
   static initProps(props) {

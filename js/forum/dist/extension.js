@@ -60,7 +60,7 @@ System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 
 
       app.initializers.add('stanleysong-auth-wechat', function () {
         extend(LogInButtons.prototype, 'items', function (items) {
-          items.add('steam', m(
+          items.add('wechat', m(
             WechatLogInButton,
             {
               className: 'Button LogInButton--wechat',

@@ -5,7 +5,7 @@ import WechatLogInButton from 'stanleysong/auth/wechat/components/WechatLogInBut
 
 app.initializers.add('stanleysong-auth-wechat', () => {
   extend(LogInButtons.prototype, 'items', function(items) {
-    items.add('steam',
+    items.add('wechat',
       <WechatLogInButton
         className="Button LogInButton--wechat"
         icon="wechat"
