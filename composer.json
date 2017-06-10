@@ -1,5 +1,5 @@
 {
-    "name": "flarum/flarum-ext-lgwechat",
+    "name": "flarum/flarum-sswechatlogin",
     "description": "Allow users to log in with Wechat.",
     "type": "flarum-extension",
     "keywords": ["authentication"],
