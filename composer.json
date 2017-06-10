@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flarum\\Auth\\Wechat\\": "src/"
+            "StanleySong\\Auth\\Wechat\\": "src/"
         }
     },
     "extra": {
