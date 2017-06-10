@@ -1,6 +1,6 @@
 'use strict';
 
-System.register('flarum/auth/wechat/components/WechatSettingsModal', ['flarum/components/SettingsModal'], function (_export, _context) {
+System.register('stanleysong/auth/wechat/components/WechatSettingsModal', ['flarum/components/SettingsModal'], function (_export, _context) {
   "use strict";
 
   var SettingsModal, WechatSettingsModal;
@@ -60,7 +60,7 @@ System.register('flarum/auth/wechat/components/WechatSettingsModal', ['flarum/co
 });;
 'use strict';
 
-System.register('flarum/auth/wechat/main', ['flarum/app', 'flarum/auth/wechat/components/WechatSettingsModal'], function (_export, _context) {
+System.register('stanleysong/auth/wechat/main', ['flarum/app', 'flarum/auth/wechat/components/WechatSettingsModal'], function (_export, _context) {
   "use strict";
 
   var app, WechatSettingsModal;

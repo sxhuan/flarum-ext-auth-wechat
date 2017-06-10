@@ -3,7 +3,7 @@
  * Stanley Song <sxhuan@gmail.com>
  */
 
-namespace Flarum\Auth\WechatLogin;
+namespace StanleySong\Auth\Wechat;
 
 use Flarum\Forum\AuthenticationResponseFactory;
 use Flarum\Forum\Controller\AbstractOAuth2Controller;
