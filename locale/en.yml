@@ -9,8 +9,8 @@ stanleysong-auth-wechat:
 
     # These translations are used in the Steam Settings modal dialog.
     wechat_settings:
-      api_key_label: API Key
-      api_secret_label: API Secret
+      app_id_label: APP ID
+      app_secret_label: APP Secret
       title: Wechat Settings
 
   # Translations in this namespace are used by the forum user interface.

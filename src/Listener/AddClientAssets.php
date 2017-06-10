@@ -6,7 +6,9 @@
 
 namespace StanleySong\Auth\Wechat\Listener;
 
-use Flarum\Event\ConfigureWebApp;
+use DirectoryIterator;
+use Flarum\Event\ConfigureClientView;
+use Flarum\Event\ConfigureLocales;
 use Illuminate\Contracts\Events\Dispatcher;
 
 class AddClientAssets
@@ -16,13 +18,14 @@ class AddClientAssets
      */
     public function subscribe(Dispatcher $events)
     {
-        $events->listen(ConfigureWebApp::class, [$this, 'addAssets']);
+        $events->listen(ConfigureClientView::class, [$this, 'addAssets']);
+        $events->listen(ConfigureLocales::class, [$this, 'addLocales']);
     }
 
     /**
      * @param ConfigureClientView $event
      */
-    public function addAssets(ConfigureWebApp $event)
+    public function addAssets(ConfigureClientView $event)
     {
         if ($event->isForum()) {
             $event->addAssets([
@@ -37,6 +40,15 @@ class AddClientAssets
                 __DIR__.'/../../js/admin/dist/extension.js'
             ]);
             $event->addBootstrapper('stanleysong/auth/wechat/main');
+        }
+    }
+
+    public function addLocales(ConfigureLocales $event)
+    {
+        foreach (new DirectoryIterator(__DIR__ .'/../../locale') as $file) {
+            if ($file->isFile() && in_array($file->getExtension(), ['yml', 'yaml'])) {
+                $event->locales->addTranslations($file->getBasename('.' . $file->getExtension()), $file->getPathname());
+            }
         }
     }
 }
