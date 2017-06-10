@@ -25,7 +25,7 @@ System.register('stanleysong/auth/wechat/components/WechatSettingsModal', ['flar
         }, {
           key: 'title',
           value: function title() {
-            return app.translator.trans('flarum-auth-wechat.admin.wechat_settings.title');
+            return app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.title');
           }
         }, {
           key: 'form',
@@ -36,18 +36,18 @@ System.register('stanleysong/auth/wechat/components/WechatSettingsModal', ['flar
               m(
                 'label',
                 null,
-                app.translator.trans('flarum-auth-wechat.admin.wechat_settings.app_id_label')
+                app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_id_label')
               ),
-              m('input', { className: 'FormControl', bidi: this.setting('flarum-auth-wechat.app_id') })
+              m('input', { className: 'FormControl', bidi: this.setting('stanleysong-auth-wechat.app_id') })
             ), m(
               'div',
               { className: 'Form-group' },
               m(
                 'label',
                 null,
-                app.translator.trans('flarum-auth-wechat.admin.wechat_settings.app_secret_label')
+                app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_secret_label')
               ),
-              m('input', { className: 'FormControl', bidi: this.setting('flarum-auth-wechat.app_secret') })
+              m('input', { className: 'FormControl', bidi: this.setting('stanleysong-auth-wechat.app_secret') })
             )];
           }
         }]);
@@ -72,8 +72,8 @@ System.register('stanleysong/auth/wechat/main', ['flarum/app', 'stanleysong/auth
     }],
     execute: function () {
 
-      app.initializers.add('flarum-auth-wechat', function () {
-        app.extensionSettings['flarum-auth-wechat'] = function () {
+      app.initializers.add('stanleysong-auth-wechat', function () {
+        app.extensionSettings['stanleysong-auth-wechat'] = function () {
           return app.modal.show(new WechatSettingsModal());
         };
       });

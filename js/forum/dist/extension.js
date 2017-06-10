@@ -24,7 +24,7 @@ System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 
               className: 'Button LogInButton--wechat',
               icon: 'wechat-official',
               path: '/auth/wechat' },
-            app.translator.trans('flarum-auth-wechat.forum.log_in.with_wechat_button')
+            app.translator.trans('stanleysong-auth-wechat.forum.log_in.with_wechat_button')
           ));
         });
       });
