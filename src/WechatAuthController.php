@@ -33,8 +33,8 @@ class WechatAuthController extends AbstractOAuth2Controller
     protected function getProvider($redirectUri)
     {
         return new OAuth([
-            'clientId'        => $this->settings->get('flarum-auth-wechat.app_id'),
-            'clientSecret'    => $this->settings->get('flarum-auth-wechat.app_secret'),
+            'AppId'        => $this->settings->get('stanleysong-auth-wechat.app_id'),
+            'AppSecret'    => $this->settings->get('stanleysong-auth-wechat.app_secret'),
         ]);
     }
 
