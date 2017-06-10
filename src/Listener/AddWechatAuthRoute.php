@@ -24,6 +24,6 @@ class AddWechatAuthRoute
      */
     public function configureForumRoutes(ConfigureForumRoutes $event)
     {
-        $event->get('/auth/wechat', 'auth.wechat', 'Flarum\Auth\Wechat\WechatAuthController');
+        $event->get('/auth/wechat', 'auth.wechat', 'StanleySong\Auth\Wechat\WechatAuthController');
     }
 }
