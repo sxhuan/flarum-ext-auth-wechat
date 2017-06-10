@@ -32,10 +32,29 @@ class WechatAuthController extends AbstractOAuth2Controller
      */
     protected function getProvider($redirectUri)
     {
-        return new OAuth([
+        $code = $_GET['code'];
+
+        $oauth = new OAuth([
             'AppId'        => $this->settings->get('stanleysong-auth-wechat.app_id'),
             'AppSecret'    => $this->settings->get('stanleysong-auth-wechat.app_secret'),
         ]);
+
+        $callback_url = $this->settings->get('stanleysong-auth-wechat.callback_url');
+        $url = $oauth->getAuthorizeURL($callback_url);
+        if($access_token = $oauth->getAccessToken('code', $code)){
+            $refresh_token = $oauth->getRefreshToken();
+            $expires_in = $oauth->getExpiresIn();
+            $openid = $oauth->getOpenid();
+            $access_token = $oauth->refreshAccessToken($refresh_token);
+        }else{
+            echo $oauth->error();
+        }
+        $oauth->setAccessToken($access_token);
+        $userinfo = $oauth->api('sns/userinfo', array('openid'=>$openid));
+
+        file_put_contents("/var/log/php.info", $userinfo);
+
+        return $userinfo;
     }
 
     /**

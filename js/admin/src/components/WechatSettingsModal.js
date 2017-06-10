@@ -19,6 +19,11 @@ export default class WechatSettingsModal extends SettingsModal {
       <div className="Form-group">
         <label>{app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_secret_label')}</label>
         <input className="FormControl" bidi={this.setting('stanleysong-auth-wechat.app_secret')}/>
+      </div>,
+
+      <div className="Form-group">
+        <label>{app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_cburl_label')}</label>
+        <input className="FormControl" bidi={this.setting('stanleysong-auth-wechat.callback_url')}/>
       </div>
     ];
   }

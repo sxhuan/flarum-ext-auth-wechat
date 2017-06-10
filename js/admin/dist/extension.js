@@ -48,6 +48,15 @@ System.register('stanleysong/auth/wechat/components/WechatSettingsModal', ['flar
                 app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_secret_label')
               ),
               m('input', { className: 'FormControl', bidi: this.setting('stanleysong-auth-wechat.app_secret') })
+            ), m(
+              'div',
+              { className: 'Form-group' },
+              m(
+                'label',
+                null,
+                app.translator.trans('stanleysong-auth-wechat.admin.wechat_settings.app_cburl_label')
+              ),
+              m('input', { className: 'FormControl', bidi: this.setting('stanleysong-auth-wechat.callback_url') })
             )];
           }
         }]);

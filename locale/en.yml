@@ -11,6 +11,7 @@ stanleysong-auth-wechat:
     wechat_settings:
       app_id_label: APP ID
       app_secret_label: APP Secret
+      app_cburl_label: Callback URL
       title: Wechat Settings
 
   # Translations in this namespace are used by the forum user interface.
