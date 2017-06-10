@@ -3,7 +3,7 @@ import app from 'flarum/app';
 import LogInButtons from 'flarum/components/LogInButtons';
 import LogInButton from 'flarum/components/LogInButton';
 
-app.initializers.add('flarum-auth-wechat', () => {
+app.initializers.add('stanleysong-auth-wechat', () => {
   extend(LogInButtons.prototype, 'items', function(items) {
     items.add('wechat',
       <LogInButton

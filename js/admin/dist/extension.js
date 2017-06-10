@@ -60,15 +60,15 @@ System.register('stanleysong/auth/wechat/components/WechatSettingsModal', ['flar
 });;
 'use strict';
 
-System.register('stanleysong/auth/wechat/main', ['flarum/app', 'flarum/auth/wechat/components/WechatSettingsModal'], function (_export, _context) {
+System.register('stanleysong/auth/wechat/main', ['flarum/app', 'stanleysong/auth/wechat/components/WechatSettingsModal'], function (_export, _context) {
   "use strict";
 
   var app, WechatSettingsModal;
   return {
     setters: [function (_flarumApp) {
       app = _flarumApp.default;
-    }, function (_flarumAuthWechatComponentsWechatSettingsModal) {
-      WechatSettingsModal = _flarumAuthWechatComponentsWechatSettingsModal.default;
+    }, function (_stanleysongAuthWechatComponentsWechatSettingsModal) {
+      WechatSettingsModal = _stanleysongAuthWechatComponentsWechatSettingsModal.default;
     }],
     execute: function () {
 

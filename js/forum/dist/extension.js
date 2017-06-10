@@ -16,7 +16,7 @@ System.register('stanleysong/auth/wechat/main', ['flarum/extend', 'flarum/app', 
     }],
     execute: function () {
 
-      app.initializers.add('flarum-auth-wechat', function () {
+      app.initializers.add('stanleysong-auth-wechat', function () {
         extend(LogInButtons.prototype, 'items', function (items) {
           items.add('wechat', m(
             LogInButton,
