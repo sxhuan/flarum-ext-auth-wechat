@@ -31,9 +31,10 @@
             "title": "Wechat Login",
             "icon": {
                 "name": "wechat",
-                "backgroundColor": "#3b5998",
+                "backgroundColor": "#22aa00",
                 "color": "#fff"
             }
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
