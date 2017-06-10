@@ -4,7 +4,7 @@
  * Stanley Song <sxhuan@gmail.com>
  */
 
-namespace Flarum\Auth\Wechat\Listener;
+namespace Flarum\Auth\WechatLogin\Listener;
 
 use Flarum\Event\ConfigureForumRoutes;
 use Illuminate\Contracts\Events\Dispatcher;
