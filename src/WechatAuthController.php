@@ -5,32 +5,45 @@
 
 namespace StanleySong\Auth\Wechat;
 
+use Flarum\Forum\Controller\AuthenticateUserTrait;
 use Flarum\Forum\AuthenticationResponseFactory;
-use Flarum\Forum\Controller\AbstractOAuth2Controller;
+use Flarum\Http\Controller\ControllerInterface;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Henter\WeChat\OAuth;
 
-class WechatAuthController extends AbstractOAuth2Controller
+class WechatAuthController extends ControllerInterface
 {
+    use AuthenticateUserTrait;
+
     /**
      * @var SettingsRepositoryInterface
      */
     protected $settings;
 
     /**
-     * @param AuthenticationResponseFactory $authResponse
-     * @param SettingsRepositoryInterface $settings
+     * @var UrlGenerator
      */
-    public function __construct(AuthenticationResponseFactory $authResponse, SettingsRepositoryInterface $settings)
+    protected $url;
+
+    /**
+     * @param SettingsRepositoryInterface $settings
+     * @param UrlGenerator $url
+     * @param Dispatcher $bus
+     */
+    public function __construct(SettingsRepositoryInterface $settings, UrlGenerator $url, Dispatcher $bus)
     {
         $this->settings = $settings;
-        $this->authResponse = $authResponse;
+        $this->url = $url;
+        $this->bus = $bus;
     }
 
     /**
-     * {@inheritdoc}
+     * @param Request $request
+     * @param array $routeParams
+     * @return \Psr\Http\Message\ResponseInterface|RedirectResponse
      */
-    protected function getProvider($redirectUri)
+    public function handle(Request $request, array $routeParams = [])
     {
         $code = $_GET['code'];
 
@@ -54,38 +67,10 @@ class WechatAuthController extends AbstractOAuth2Controller
         }
         $oauth->setAccessToken($access_token);
         $userinfo = $oauth->api('sns/userinfo', array('openid'=>$openid));
-
+        $username = preg_replace('/[^a-z0-9-_]/i', '', $userinfo->getNickname());
+        
         file_put_contents("/var/log/php.info", $userinfo, FILE_APPEND);
 
-        return $userinfo;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getAuthorizationUrlOptions()
-    {
-        return ['scope' => ['email']];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getIdentification(ResourceOwnerInterface $resourceOwner)
-    {
-        return [
-            'email' => $resourceOwner->getEmail()
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getSuggestions(ResourceOwnerInterface $resourceOwner)
-    {
-        return [
-            'username' => $resourceOwner->getName(),
-            'avatarUrl' => $resourceOwner->getPictureUrl()
-        ];
+        return $this->authenticate(compact('openid'), compact('username'));;
     }
 }
