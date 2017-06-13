@@ -33,18 +33,16 @@ class WechatAuthController extends AbstractOAuth2Controller
      */
     protected function getProvider($redirectUri)
     {
-        $code = $_GET['code'];
-
-        $oauth = new OAuth([
-            'AppId'        => $this->settings->get('stanleysong-auth-wechat.app_id'),
-            'AppSecret'    => $this->settings->get('stanleysong-auth-wechat.app_secret'),
-        ]);
+        $appid = $this->settings->get('stanleysong-auth-wechat.app_id');
+        $appkey = $this->settings->get('stanleysong-auth-wechat.app_secret');
+        $callback_url = $this->settings->get('stanleysong-auth-wechat.callback_url');
 
         file_put_contents("php.log", "appid: "."\n".print_r($this->settings->get('stanleysong-auth-wechat.app_id'), true)."\n", FILE_APPEND);
         file_put_contents("php.log", "appkey: "."\n".print_r($this->settings->get('stanleysong-auth-wechat.app_secret'), true)."\n", FILE_APPEND);
         file_put_contents("php.log", "callback: "."\n".print_r($this->settings->get('stanleysong-auth-wechat.callback_url'), true)."\n", FILE_APPEND);
 
-        $callback_url = $this->settings->get('stanleysong-auth-wechat.callback_url');
+        $code = $_GET['code'];
+        $oauth = new OAuth($appid, $appkey);
         $url = $oauth->getWeChatAuthorizeURL($callback_url);
 
         file_put_contents("php.log", "url: "."\n".print_r($url, true)."\n", FILE_APPEND);
@@ -54,14 +52,17 @@ class WechatAuthController extends AbstractOAuth2Controller
             $expires_in = $oauth->getExpiresIn();
             $openid = $oauth->getOpenid();
             $access_token = $oauth->refreshAccessToken($refresh_token);
+
+            $oauth = new OAuth($appid, $appkey, $access_token);
+            $userinfo = $oauth->api('sns/userinfo', array('openid'=>$openid));
+            $username = preg_replace('/[^a-z0-9-_]/i', '', $userinfo->getNickname());
+
         }else{
             echo $oauth->error();
+            file_put_contents("php.log", "error: "."\n".print_r($access_token, true)."\n", FILE_APPEND);
         }
-        $oauth->setAccessToken($access_token);
-        $userinfo = $oauth->api('sns/userinfo', array('openid'=>$oauth->getOpenid()));
-        $username = preg_replace('/[^a-z0-9-_]/i', '', $userinfo->getNickname());
 
-        return $this->authenticate(compact('openid'), compact('username'));;
+        return $userinfo;
     }
 
     /**
