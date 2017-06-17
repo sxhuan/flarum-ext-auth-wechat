@@ -9,9 +9,14 @@ This plugin is for Flarum using Wechat third-party login.
 
 
 # Setup
-You need to have open platform app id and secrets of wechat (https://open.weixin.qq.com)
+1. install extension:
+>composer require stanleysong/flarum-ext-auth-wechat
 
-Config:
+update extension:
+>composer update
+
+2. config:
+You need to have open platform app id and secrets of wechat (https://open.weixin.qq.com)
 fill app id and secrets and callback url
 callback url is your domian with "/auth/wechat"
 eg.
