@@ -25,7 +25,7 @@ www.yourdomain.com/auth/wechat
 your authrizon callback domian in https://open.weixin.qq.com  can be www.yourdomain.com
 
 
-2. fill wechat callback url, it will get back this url while login success
+3. fill wechat callback url, it will get back this url while login success
 
 # Notice
 As wechat has not provide email, here using a random string as email,
