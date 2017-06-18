@@ -43,7 +43,12 @@ class WechatAuthController extends AbstractOAuth2Controller
         $session = $request->getAttribute('session');
         $code = $_GET['code'];
         if (!isset($_GET['code'])) {
-            $url = $this->provider->getAuthorizeURL($callback_url);
+            if ($this->is_wechat_open()) {
+                $url = $this->provider->getWeChatAuthorizeURL($callback_url);
+            } else {
+                $url = $this->provider->getAuthorizeURL($callback_url);
+            }
+
             $_SESSION['oauth2state'] = $this->generateRandomString();
             $session->set('oauth2state', $_SESSION['oauth2state']);
 
@@ -138,5 +143,14 @@ class WechatAuthController extends AbstractOAuth2Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
-    }   
+    }
+
+    protected function is_wechat_open()
+    {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
